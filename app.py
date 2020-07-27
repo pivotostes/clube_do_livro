@@ -15,18 +15,20 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 db.init_app(app)
 
-@config.APP.route('/')
+
+@app.route('/')
 def hello_world():
     roles = []
 
-    res = db.session.query(Role).all()
+    """ res = db.session.query(Role).all()
     for role in res:
         roles.append({
             'id:': db.i,
             'Role:': db.role
-        })
+        }) """
 
     return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(host=config.IP_HOST, port=config.PORT_HOST)

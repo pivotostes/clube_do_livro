@@ -8,6 +8,11 @@
 
 {% block content %}
     <h1>Olá mundo</h1>
+    <ul>
+        {% for role in roles %}
+            <li>{{role.id}} - {{role.name}}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block scripts %}

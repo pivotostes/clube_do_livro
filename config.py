@@ -13,11 +13,10 @@ class DevelopmentConfig(Config):
     TESTING = False
     DEBUG = True
     IP_HOST = '192.168.1.104'
-    PORT_HOST = 5000
+    PORT_HOST = 8000
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
-    SQLALCHEMY_DATABASE_URI = 'sqllite:///' + os.path.join(ROOT_DIR,
-                                                           'db.sqlite3')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(ROOT_DIR, 'db.sqlite')
 
 
 class ProductionConfig(Config):
@@ -34,5 +33,3 @@ app_config = {
 }
 
 app_active = os.getenv('FLASK_ENV')
-
-app_config[app_active]

@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     PORT_HOST = 8000
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(ROOT_DIR, 'db.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(ROOT_DIR, 'db.sqlite3')
 
 
 class ProductionConfig(Config):

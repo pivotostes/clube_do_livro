@@ -14,11 +14,11 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
 
-    date_created = db.Column(db.String(),
+    date_created = db.Column(db.DateTime(),
                              default=db.func.current_timestamp(),
                              nullable=False)
 
-    last_update = db.Column(db.String(),
+    last_update = db.Column(db.DateTime(),
                             onupdate=db.func.current_timestamp(),
                             nullable=True)
 

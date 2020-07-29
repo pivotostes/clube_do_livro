@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from config import app_config, app_active
 from flask_sqlalchemy import SQLAlchemy
 from models.Role import Role
+from models.User import User
 from admin.Admin import start_views
 
 config = app_config[app_active]
@@ -30,7 +31,15 @@ def hello_world():
             'name': role.name
         })
 
-    return render_template('login.html', roles=roles)
+    users = []
+
+    for user in User.query.all():
+        users.append({
+            'id': user.id,
+            'name': user.username
+        })
+
+    return render_template('login.html', roles=roles, users=users)
 
 
 if __name__ == '__main__':

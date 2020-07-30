@@ -3,6 +3,7 @@ from config import app_config, app_active
 from flask_sqlalchemy import SQLAlchemy
 from models.Role import Role
 from models.User import User
+from models.Product import Product
 from admin.Admin import start_views
 
 config = app_config[app_active]
@@ -24,7 +25,6 @@ db.init_app(config.APP)
 @config.APP.route('/')
 def hello_world():
     roles = []
-
     for role in Role.query.all():
         roles.append({
             'id': role.id,
@@ -32,14 +32,22 @@ def hello_world():
         })
 
     users = []
-
     for user in User.query.all():
         users.append({
             'id': user.id,
             'name': user.username
         })
 
-    return render_template('login.html', roles=roles, users=users)
+    products = []
+    for product in Product.query.all():
+        products.append({
+            'id': product.id,
+            'product': product.name,
+            'product_type': product.category
+        })
+
+    return render_template('login.html', roles=roles, users=users,
+                           products=products)
 
 
 if __name__ == '__main__':

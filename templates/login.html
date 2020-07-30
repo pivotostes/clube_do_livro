@@ -7,15 +7,23 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Olá mundo</h1>
+    <h4>Lista de Funcões</h4>
     <ul>
         {% for role in roles %}
             <li>{{role.id}} - {{role.name}}</li>
         {% endfor %}
     </ul>
+
+    <h4>Lista de Usuários</h4>
     <ul>
         {% for user in users %}
-            <li>{{user.id}} - {{user.username}}</li>
+            <li>ID: {{user.id}} => USERNAME: {{user.name}}</li>
+        {% endfor %}
+    </ul>
+    <h4>Produtos Cadastrados</h4>
+    <ul>
+        {% for product in products %}
+            <li>ID: {{product.id}} => NAME: {{product.product}} => Tipo produto: {{product.product_type}}</li>
         {% endfor %}
     </ul>
 

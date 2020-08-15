@@ -12,7 +12,7 @@ class Config(object):
 class DevelopmentConfig(Config):
     TESTING = False
     DEBUG = True
-    IP_HOST = '192.168.1.104'
+    IP_HOST = '192.168.100.103'
     PORT_HOST = 8000
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)

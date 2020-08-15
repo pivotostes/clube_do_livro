@@ -1,6 +1,6 @@
 {
     "python.pythonPath": "venv/bin/python",
-    "python.languageServer": "Jedi",
+    "python.languageServer": "Pylance",
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.pylamaEnabled": false,

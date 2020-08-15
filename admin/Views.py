@@ -1,8 +1,17 @@
 from flask_admin.contrib.sqla import ModelView
+from flask_login import current_user
+from flask import redirect
 
 
 class RoleView(ModelView):
-    pass
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        if current_user.is_authenticated:
+            return redirect('/admin')
+        else:
+            return redirect('/login')
 
 
 class UserView(ModelView):
@@ -24,10 +33,33 @@ class UserView(ModelView):
         if form.password.data is not None:
             model.set_password(form.password.data)
 
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        if current_user.is_authenticated:
+            return redirect('/admin')
+        else:
+            return redirect('/login')
+
 
 class CategoryView(ModelView):
-    pass
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        if current_user.is_authenticated:
+            return redirect('/admin')
+        else:
+            return redirect('/login')
 
 
 class ProductView(ModelView):
-    pass
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        if current_user.is_authenticated:
+            return redirect('/admin')
+        else:
+            return redirect('/login')

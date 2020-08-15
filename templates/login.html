@@ -1,34 +1,53 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block title %}Login{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{url_for('.static', filename='css/login.css')}}">
+    <title>Hello, world!</title>
+  </head>
+  <body>
 
-{% block style %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-{% endblock %}
-
-{% block content %}
-    <h4>Lista de Funcões</h4>
-    <ul>
-        {% for role in roles %}
-            <li>{{role.id}} - {{role.name}}</li>
-        {% endfor %}
-    </ul>
-
-    <h4>Lista de Usuários</h4>
-    <ul>
-        {% for user in users %}
-            <li>ID: {{user.id}} => USERNAME: {{user.name}}</li>
-        {% endfor %}
-    </ul>
-    <h4>Produtos Cadastrados</h4>
-    <ul>
-        {% for product in products %}
-            <li>ID: {{product.id}} => NAME: {{product.product}} => Tipo produto: {{product.product_type}}</li>
-        {% endfor %}
-    </ul>
-
-{% endblock %}
-
-{% block scripts %}
-    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-{% endblock %}
+  <form class="form-signin text-center" action="/login" method="post">
+	<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+	<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+		<div class="checkbox mb-3">
+        <label for="inputEmail" class="sr-only">E-mail</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
+    </div>
+    <div class="checkbox mb-3">
+	    <label for="inputPassword" class="sr-only">Senha</label>
+			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+		</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+	<a href="http://localhost:8000/recovery-password/">Recuperar senha</a>
+	{% if data.status == 401 %}
+		{% if data.type == 1 %}
+		<div class="alert alert-danger" role="alert">
+			{{data.msg}}
+		</div>
+		{% elif data.type == 2 %}
+		<div class="alert alert-warning" role="alert">
+			{{data.msg}}
+		</div>
+  	{% endif %}
+	{% elif data.status == 200 %}
+		{% if data.type == 3 %}
+		<div class="alert alert-success" role="alert">
+			{{data.msg}}
+		</div>
+  	{% endif %}
+  {% endif %}
+  </form>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  	<script src="{{url_for('.static', filename='js/custom.js')}}"></script>
+  </body>
+</html>

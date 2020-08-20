@@ -35,7 +35,6 @@ def hello_world():
         password = request.form['password']
 
         result = user.login(email, password)
-        import pdb; pdb.set_trace()
         if result:
             if result.role != 1:
                 return render_template('login.html',

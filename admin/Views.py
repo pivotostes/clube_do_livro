@@ -16,7 +16,7 @@ class HomeView(AdminIndexView):
 
         return self.render('home_admin.html', totalUsers=user.getTotalUser(),
                            totalCategories=category.getTotalCategories(),
-                           totalProducts=product.getTotalProducts,
+                           totalProducts=product.getTotalProducts(),
                            products=product.getLastProducts())
 
 

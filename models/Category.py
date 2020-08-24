@@ -12,3 +12,6 @@ class Category(db.Model):
 
     def __repr__(self):
         return '{} - {}'.format(self.id, self.name)
+
+    def getDb(self):
+        return db

@@ -37,3 +37,6 @@ class User(db.Model, UserMixin):
 
     def verify_password(self, password_hash, password_no_hash):
         return pbkdf2_sha256.verify(password_no_hash, password_hash)
+
+    def getDb(self):
+        return db

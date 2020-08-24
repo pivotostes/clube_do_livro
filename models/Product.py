@@ -38,3 +38,6 @@ class Product(db.Model):
     # uma vez que são FK.
     user = relationship(User)
     category_re = relationship(Category)
+
+    def getDb(self):
+        return db

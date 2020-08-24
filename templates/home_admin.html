@@ -1,0 +1,70 @@
+{% extends admin_base_template %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 py-2">
+            <div class="card bg-success">
+                <div class="card-body bg-success">
+                    <div class="rotate">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h6 class="text-uppercase">Usuários</h6>
+                    <p class="display-4">{{totalUsers}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 py-2">
+            <div class="card bg-warning">
+                <div class="card-body bg-warning">
+                    <div class="rotate">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <h6 class="text-uppercase">Categorias</h6>
+                    <p class="display-4">{{totalCategories}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 py-2">
+            <div class="card bg-danger">
+                <div class="card-body bg-danger">
+                    <div class="rotate">
+                        <i class="fa fa-briefcase"></i>
+                    </div>
+                    <h6 class="text-uppercase">Produtos</h6>
+                    <p class="display-4">{{totalProducts}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <h3>Últimos produtos</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Data Criação</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <th scope="row">{{ product.id }}</th>
+              <td>{{ product.name }}</td>
+              <td>{{ product.date_created }}</td>
+              <td>{{ product.qtd }}</td>
+              <td>{{ product.qtd }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

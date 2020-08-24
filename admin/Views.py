@@ -1,6 +1,23 @@
+from flask_admin.base import AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user
 from flask import redirect
+from controller.User import UserController
+from controller.Product import ProductController
+from controller.Category import CategoryController
+
+
+class HomeView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        user = UserController()
+        category = CategoryController()
+        product = ProductController()
+
+        return self.render('home_admin.html', totalUsers=user.getTotalUser(),
+                           totalCategories=category.getTotalCategories(),
+                           totalProducts=product.getTotalProducts,
+                           products=product.getLastProducts())
 
 
 class RoleView(ModelView):

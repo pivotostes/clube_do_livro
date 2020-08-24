@@ -7,7 +7,8 @@ from controller.User import UserController
 
 config = app_config[app_active]
 
-config.APP = Flask(__name__)
+app = Flask(__name__)
+config.APP = app
 
 login_manager = LoginManager()
 login_manager.init_app(config.APP)
@@ -23,7 +24,8 @@ start_views(config.APP, db)
 db.init_app(config.APP)
 
 
-@config.APP.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def hello_world():
     msg = None
     _type = None
@@ -52,7 +54,7 @@ def hello_world():
                                                'type': _type})
 
 
-@config.APP.route('/logout')
+@app.route('/logout')
 def logout():
     logout_user()
     return redirect('/login')

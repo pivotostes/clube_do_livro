@@ -16,3 +16,16 @@ class UserController():
                 return user
 
         return None
+
+    def getTotalUser(self):
+        db = self.user_model.getDb()
+
+        try:
+            res = db.session.query(db.func.count(User.id)).first()[0]
+        except Exception as e:
+            res = 0
+            print(e)
+        finally:
+            db.session.close()
+
+        return res
